@@ -72,13 +72,13 @@ void showFrame(ApplicationState _state) {
 void drawLoginForm() {
   cp5.addTextfield("Utilisateur")
     .setPosition(100, 100)
-    .setSize(600, 30)
+    .setSize(932, 30)
     .setFocus(true)
     .setGroup(mainPanel);
 
   cp5.addTextfield("Mot de passe")
     .setPosition(100, 160)
-    .setSize(600, 30)
+    .setSize(932, 30)
     .setPasswordMode(true)
     .setGroup(mainPanel);
 
@@ -117,7 +117,7 @@ void drawMainMenu(User user) {
     .setGroup(mainPanel);
 
   cp5.addButton("New Project")
-    .setPosition(650, 100)
+    .setPosition(900, 100)
     .setSize(100, 30)
     .setGroup(mainPanel)
     .onPress(new CallbackListener() {
@@ -128,7 +128,7 @@ void drawMainMenu(User user) {
   );
 
   cp5.addButton("Deconnexion")
-    .setPosition(650, 500)
+    .setPosition(900, 500)
     .setSize(100, 30)
     .setGroup(mainPanel)
     .onPress(new CallbackListener() {
@@ -143,21 +143,11 @@ void drawMainMenu(User user) {
 void drawPaintFrame(User user) {
   imgBackground.resize(1132, 600);
   background(imgBackground);
-  
-  final User _user = user;
-  cp5.addButton("Import Project")
-    .setPosition(650, 50)
-    .setSize(100, 30)
-    .setGroup(mainPanel)
-    .onPress(new CallbackListener() {
-    public void controlEvent(CallbackEvent e) {
-      selectInput("Choose jpg file to import: ", "ImportFunc");
-    }
-  }
-  );
+
+  final User _user = user;  
 
   cp5.addButton("Sauvegarder")
-    .setPosition(50, 50)
+    .setPosition(300, 500)
     .setSize(100, 30)
     .setGroup(mainPanel)
     .onPress(new CallbackListener() {
@@ -170,7 +160,7 @@ void drawPaintFrame(User user) {
   );
 
   cp5.addButton("Annuler")
-    .setPosition(200, 50)
+    .setPosition(450, 500)
     .setSize(100, 30)
     .setGroup(mainPanel)
     .onPress(new CallbackListener() {
@@ -181,9 +171,20 @@ void drawPaintFrame(User user) {
   );
 
   cp5.addColorPicker("picker")
-    .setPosition(350, 50)
+    .setPosition(600, 500)
     .setColorValue(color(255, 128, 0, 128))
     .setGroup(mainPanel);
+
+  cp5.addButton("Import Project")
+    .setPosition(900, 500)
+    .setSize(100, 30)
+    .setGroup(mainPanel)
+    .onPress(new CallbackListener() {
+    public void controlEvent(CallbackEvent e) {
+      selectInput("Choose jpg file to import: ", "ImportFunc");
+    }
+  }
+  );
 }
 
 void ImportFunc(File selectedFile) { // CallBck function for importing project.
