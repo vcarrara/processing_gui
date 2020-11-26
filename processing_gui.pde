@@ -24,7 +24,7 @@ void setup() {
   cp5 = new ControlP5(this);
   // Affichage de la fenêtre correspondant à l'état initial
   showFrame(state);
-  imgBackground = loadImage("data/paintInterface.png");
+  imgBackground = loadImage("data/paintInterface.jpg");
 }
 
 void draw() {
