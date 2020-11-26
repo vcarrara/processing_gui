@@ -183,8 +183,10 @@ void drawPaintFrame(User user) {
 
 void ImportFunc(File selectedFile) { // CallBck function for importing project.
   if (selectedFile != null) {
-    PImage img = loadImage(selectedFile.getAbsolutePath());
-    background(img);
+    if (selectedFile.getAbsolutePath().contains(currentUser.getUsername())) {
+      PImage img = loadImage(selectedFile.getAbsolutePath());
+      background(img);
+    }
     showFrame(ApplicationState.PAINT_FRAME);
   }
 }
