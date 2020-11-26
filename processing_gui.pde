@@ -146,7 +146,9 @@ void drawPaintFrame(User user) {
     .setGroup(mainPanel)
     .onPress(new CallbackListener() {
     public void controlEvent(CallbackEvent e) {
-      // TODO
+      //Sauvegarde de l'état actuel de la fenêtre. A voir pour réimporter l'image en fond pour "charger" une seuvegarde.
+      String file = "saves/save-" + day() + "-" + month() + "-####.jpg";
+      saveFrame(file);
     }
   }
   );
