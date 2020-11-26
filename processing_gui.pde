@@ -15,6 +15,8 @@ ApplicationState state = ApplicationState.LOGIN_FORM;
 // Utitilisateur courant de l'application
 User currentUser;
 
+PImage imgBackground;
+
 void setup() {
   size(800, 600);
   noStroke();
@@ -22,6 +24,7 @@ void setup() {
   cp5 = new ControlP5(this);
   // Affichage de la fenêtre correspondant à l'état initial
   showFrame(state);
+  imgBackground = loadImage("data/paintInterface.png");
 }
 
 void draw() {
@@ -138,8 +141,10 @@ void drawMainMenu(User user) {
 }
 
 void drawPaintFrame(User user) {
+  imgBackground.resize(800, 600);
+  background(imgBackground);
+  
   final User _user = user;
-
   cp5.addButton("Import Project")
     .setPosition(650, 50)
     .setSize(100, 30)
