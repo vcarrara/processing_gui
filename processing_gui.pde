@@ -92,7 +92,7 @@ void drawLoginForm() {
       // Si les identifiants sont corrects
       //On vérifie si les identifiants existent dans le fichier des utilisateurs. Puis on vérifie le mot de passe.
       String credential = getUsersCredentials(username);
-      if (credential != null) {
+      if (credential != null) { // Si la fonction renvoie null le username est inconnu. Les conditions sont séparées pour éviter une NullPointerException.
         if (credential.equals(password)) {
           currentUser = new User(username);
           showFrame(ApplicationState.MAIN_MENU);
@@ -140,6 +140,17 @@ void drawMainMenu(User user) {
 void drawPaintFrame(User user) {
   final User _user = user;
 
+  cp5.addButton("Import Project")
+    .setPosition(650, 100)
+    .setSize(100, 30)
+    .setGroup(mainPanel)
+    .onPress(new CallbackListener() {
+    public void controlEvent(CallbackEvent e) {
+      selectInput("Choose jpg file to import: ", "ImportFunc");
+    }
+  }
+  );
+
   cp5.addButton("Sauvegarder")
     .setPosition(50, 50)
     .setSize(100, 30)
@@ -147,7 +158,7 @@ void drawPaintFrame(User user) {
     .onPress(new CallbackListener() {
     public void controlEvent(CallbackEvent e) {
       //Sauvegarde de l'état actuel de la fenêtre. A voir pour réimporter l'image en fond pour "charger" une seuvegarde.
-      String file = "saves/save-" + day() + "-" + month() + "-####.jpg";
+      String file = "saves/save-" + day() + "-" + month() + "-####" + currentUser.getUsername() + ".jpg";
       saveFrame(file);
     }
   }
@@ -168,6 +179,13 @@ void drawPaintFrame(User user) {
     .setPosition(350, 50)
     .setColorValue(color(255, 128, 0, 128))
     .setGroup(mainPanel);
+}
+
+void ImportFunc(File selectedFile) { // CallBck function for importing project.
+  if (selectedFile != null) {
+    PImage img = loadImage(selectedFile.getAbsolutePath());
+    background(img);
+  }
 }
 
 String getUsersCredentials(String username) {
