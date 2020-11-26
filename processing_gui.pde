@@ -141,7 +141,7 @@ void drawPaintFrame(User user) {
   final User _user = user;
 
   cp5.addButton("Import Project")
-    .setPosition(650, 100)
+    .setPosition(650, 50)
     .setSize(100, 30)
     .setGroup(mainPanel)
     .onPress(new CallbackListener() {
@@ -185,6 +185,7 @@ void ImportFunc(File selectedFile) { // CallBck function for importing project.
   if (selectedFile != null) {
     PImage img = loadImage(selectedFile.getAbsolutePath());
     background(img);
+    showFrame(ApplicationState.PAINT_FRAME);
   }
 }
 
