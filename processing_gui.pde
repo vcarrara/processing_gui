@@ -1,8 +1,9 @@
 import controlP5.*;
 
 // Constantes de configuration
-final String USERNAME = "robert";
-final String PASSWORD = "robert";
+//Plus utile avec le fichier utilisateur.
+//final String USERNAME = "robert";
+//final String PASSWORD = "robert";
 
 // Variable ControlP5 pour créer l'interface graphique
 ControlP5 cp5;
@@ -89,9 +90,13 @@ void drawLoginForm() {
       final String password = cp5.get(Textfield.class, "Mot de passe").getText();
 
       // Si les identifiants sont corrects
-      if (USERNAME.equals(username) && PASSWORD.equals(password)) {
-        currentUser = new User(username);
-        showFrame(ApplicationState.MAIN_MENU);
+      //On vérifie si les identifiants existent dans le fichier des utilisateurs. Puis on vérifie le mot de passe.
+      String credential = getUsersCredentials(username);
+      if (credential != null) {
+        if (credential.equals(password)) {
+          currentUser = new User(username);
+          showFrame(ApplicationState.MAIN_MENU);
+        }
       }
     }
   }
@@ -161,4 +166,15 @@ void drawPaintFrame(User user) {
     .setPosition(350, 50)
     .setColorValue(color(255, 128, 0, 128))
     .setGroup(mainPanel);
+}
+
+String getUsersCredentials(String username) {
+  String[] lines = loadStrings("data/users.txt");
+  for (int i = 0; i<lines.length; i++) {
+    String[] currentUser = split(lines[i], "|");
+    if (currentUser[0].equals(username)) {
+      return currentUser[1];
+    }
+  }
+  return null;
 }
