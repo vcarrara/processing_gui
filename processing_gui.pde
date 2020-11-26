@@ -18,7 +18,7 @@ User currentUser;
 PImage imgBackground;
 
 void setup() {
-  size(800, 600);
+  size(1132, 600);
   noStroke();
   // Création de l'instance de ControlP5 et du Main Panel associé
   cp5 = new ControlP5(this);
@@ -141,7 +141,7 @@ void drawMainMenu(User user) {
 }
 
 void drawPaintFrame(User user) {
-  imgBackground.resize(800, 600);
+  imgBackground.resize(1132, 600);
   background(imgBackground);
   
   final User _user = user;
